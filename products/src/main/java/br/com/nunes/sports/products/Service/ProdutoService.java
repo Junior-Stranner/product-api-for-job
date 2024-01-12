@@ -24,4 +24,10 @@ public class ProdutoService {
         this.produtoRepository.save(produto);
     }
 
+ /*    @Transactional
+    public void excluirProduto(Long codigo){
+      this.produtoRepository.deleteByCodigo(codigo);
+    //  this.produtoRepository.delete(produto);
+    }*/
+
 }
