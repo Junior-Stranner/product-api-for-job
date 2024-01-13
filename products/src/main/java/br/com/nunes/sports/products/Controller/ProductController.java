@@ -1,6 +1,5 @@
 package br.com.nunes.sports.products.Controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.nunes.sports.products.Entity.Produto;
 import br.com.nunes.sports.products.Repository.ProdutcRepository;
 import br.com.nunes.sports.products.Service.ProdutoService;
+import jakarta.el.PropertyNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Controller
@@ -45,7 +45,6 @@ public class ProductController {
         mv.addObject("produtos", produtos);
         return mv;
     }
- 
   
     @Transactional
     @GetMapping("/excluirProduto/{codigo}")
@@ -54,12 +53,29 @@ public class ProductController {
         return "redirect:/listaProdutos";
     }
 
+
     @GetMapping("/editarProduto/{codigo}")
-    public ModelAndView editarProduto(@PathVariable("codigo")Long codigo){
+    public ModelAndView editarProduto(@PathVariable("codigo") Long codigo) throws Exception {
         ModelAndView mv = new ModelAndView("cadastrarProduto");
-        Produto produto = this.produtoRepository.findById(codigo).get();
+
+        try {
+            Produto produto = produtoService.editarProduto(codigo);
+            // Adiciona o produto ao ModelAndView
+            mv.addObject("produto", produto);
+        } catch (PropertyNotFoundException e) {
+            // Lidar com a exceção, redirecionar para uma página de erro, etc.
+            mv.addObject("mensagemErro", "Produto não encontrado para o código: " + codigo);
+        }
         return mv;
-
     }
-}
 
+  /*    @GetMapping("/editarProduto/{codigo}")
+    public ModelAndView editarPerfil(@PathVariable("codigo" )Long codigo){
+   ModelAndView mv = new ModelAndView("cadastrarProduto");
+     this.produtoRepository.findByCodigo(codigo);
+    return mv;
+       
+    }*/
+
+}
+ 

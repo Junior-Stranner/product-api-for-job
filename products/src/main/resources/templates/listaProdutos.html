@@ -12,37 +12,54 @@
     <title>Lista de Produtos</title>
 
     <style>
-        body {
-            background-color: #f7f7f7;
-            padding: 20px;
-        }
-    
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-    
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            background-color: #fff;
-        }
-    
-        th,
-        td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-    
-        th {
-            background-color: #333;
-            color: #fff;
-        }
-    
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    color: #007bff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    text-align: left;
+}
+
+thead {
+    background-color: #007bff;
+    color: #fff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+a.btn {
+    text-decoration: none;
+    margin-right: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
     </style>
 </head>
 
@@ -57,6 +74,9 @@
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Preço</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+
             </tr>
         </thead>
         <tbody>

@@ -10,7 +10,7 @@ public interface ProdutcRepository extends CrudRepository <Produto, Long>{
     
     void deleteByCodigo(Long codigo);
 
-    List<Produto> findByCodigo(int codigo);
+    List<Produto> findByCodigo(Long codigo);
     
 }
 

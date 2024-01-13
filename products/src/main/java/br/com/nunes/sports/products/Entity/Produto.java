@@ -11,6 +11,8 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,10 +33,11 @@ public class Produto {
     @Column(nullable = false)
     private String descricao;
 
-    @Column(nullable = false)
     @Digits(integer = 10, fraction = 2)
-    @DecimalMin(value =" 0.00")
-    @DecimalMax(value = "99999999.99")
+    @DecimalMin(value = "0.00", inclusive = false)
+    @DecimalMax(value = "9999999.00")
+    @Column(name = "preco", precision = 10, scale = 2,nullable = false) // Precision e scale ajustados conforme necessário
     private BigDecimal preco;
+    
     
 }
