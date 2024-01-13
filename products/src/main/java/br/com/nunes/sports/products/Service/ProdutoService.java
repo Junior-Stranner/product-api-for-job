@@ -37,21 +37,4 @@ public class ProdutoService {
       this.produtoRepository.deleteByCodigo(codigo);
     //  this.produtoRepository.delete(produto);
     }*/
-
-
-    public void atualizarProduto(Produto produto) {
-        // Implemente a lógica para atualizar o produto no banco de dados
-        // Pode ser algo como:
-        Produto produtoExistente = produtoRepository.findByCodigo(produto.getCodigo());
-
-        if (produtoExistente != null) {
-            // Atualize os atributos do produto existente com os valores do produto recebido
-            produtoExistente.setNome(produto.getNome());
-            produtoExistente.setPreco(produto.getPreco());
-            // Adicione outros atributos conforme necessário
-
-            // Salve as alterações no banco de dados
-            produtoRepository.save(produtoExistente);
-        }
-    }
 }

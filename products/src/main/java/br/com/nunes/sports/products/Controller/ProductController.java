@@ -56,13 +56,11 @@ public class ProductController {
 
 
      @GetMapping("/editarProduto/{codigo}")
-    public String editarPerfil(@PathVariable("codigo" )Long codigo,Produto produto){
-
-        this.produtoService.atualizarProduto(produto);
- /*  ModelAndView mv = new ModelAndView("editarProduto");
+    public ModelAndView editarPerfil(@PathVariable("codigo" )Long codigo){
+   ModelAndView mv = new ModelAndView("cadastrarProduto");
    Produto produto = this.produtoRepository.findByCodigo(codigo);
-     mv.addObject("produto", produto); */
-    return "redirect:/listaProdutos";
+     mv.addObject("produto", produto);
+    return mv;
        
     }
 
