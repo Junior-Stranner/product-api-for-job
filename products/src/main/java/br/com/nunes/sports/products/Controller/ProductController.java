@@ -1,5 +1,7 @@
 package br.com.nunes.sports.products.Controller;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,9 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.nunes.sports.products.Entity.Produto;
-import br.com.nunes.sports.products.Repository.ProdutcRepository;
+import br.com.nunes.sports.products.Repository.ProdutoRepository;
 import br.com.nunes.sports.products.Service.ProdutoService;
-import jakarta.el.PropertyNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Controller
@@ -21,7 +22,7 @@ public class ProductController {
     private final ProdutoService produtoService;
 
     @Autowired
-    private  ProdutcRepository produtoRepository;
+    private  ProdutoRepository produtoRepository;
 
     public ProductController(ProdutoService produtoService) {
         this.produtoService = produtoService;
@@ -54,28 +55,16 @@ public class ProductController {
     }
 
 
-    @GetMapping("/editarProduto/{codigo}")
-    public ModelAndView editarProduto(@PathVariable("codigo") Long codigo) throws Exception {
-        ModelAndView mv = new ModelAndView("cadastrarProduto");
+     @GetMapping("/editarProduto/{codigo}")
+    public String editarPerfil(@PathVariable("codigo" )Long codigo,Produto produto){
 
-        try {
-            Produto produto = produtoService.editarProduto(codigo);
-            // Adiciona o produto ao ModelAndView
-            mv.addObject("produto", produto);
-        } catch (PropertyNotFoundException e) {
-            // Lidar com a exceção, redirecionar para uma página de erro, etc.
-            mv.addObject("mensagemErro", "Produto não encontrado para o código: " + codigo);
-        }
-        return mv;
-    }
-
-  /*    @GetMapping("/editarProduto/{codigo}")
-    public ModelAndView editarPerfil(@PathVariable("codigo" )Long codigo){
-   ModelAndView mv = new ModelAndView("cadastrarProduto");
-     this.produtoRepository.findByCodigo(codigo);
-    return mv;
+        this.produtoService.atualizarProduto(produto);
+ /*  ModelAndView mv = new ModelAndView("editarProduto");
+   Produto produto = this.produtoRepository.findByCodigo(codigo);
+     mv.addObject("produto", produto); */
+    return "redirect:/listaProdutos";
        
-    }*/
+    }
 
 }
  
