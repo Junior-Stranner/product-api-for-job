@@ -13,7 +13,7 @@ public interface ProdutoService {
 	
 	Produto getProdutoByCodigo(Long codigo);
 	
-	Produto updateProduto(Produto produto);
+//	Produto updateProduto(Produto produto);
 	
 	void deleteProdutoBycodigo(Long codigo);
 

@@ -56,13 +56,33 @@ public class ProductController {
         return mv;
     }
 
+    /*Irei deixar essa lógica , pois quando vou editar , os dados que eu cadastrei 
+    ficará assim consigo alterar só um campo ao invês de empreencher tudo novamente */
     @GetMapping("/editarProduto/{codigo}")
-    public ModelAndView editarPerfil(@PathVariable("codigo") Long codigo,Produto produto) {
+    public ModelAndView editarPerfil(@PathVariable("codigo") Long codigo) {
         ModelAndView mv = new ModelAndView("cadastrarProduto");
-     mv.addObject("produto", produto);
-      this.produtoService.updateProduto(produto);
+       Optional<Produto> optionalProduto = produtoRepository.findByCodigo(codigo);
+    
+        if (optionalProduto.isPresent()) {
+            Produto produto = optionalProduto.get();
+            mv.addObject("produto", produto);
+        } else {
+           
+            return new ModelAndView("redirect:/listaProdutos");
+        }
+    
         return mv;
     }
+    
+
+
+/* 	@PostMapping("/editarProduto/{codigo}")
+	public String updateStudent(@PathVariable("codigo") @ModelAttribute  Produto produto) {
+        produto.setCodigo(produto.getCodigo()); 
+		// salva o Produto existente
+		produtoService.updateProduto(produto);
+		return "redirect:/listaProdutos";		
+	}*/
 
       
     @Transactional

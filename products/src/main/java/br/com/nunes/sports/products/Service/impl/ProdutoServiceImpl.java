@@ -36,7 +36,9 @@ public class ProdutoServiceImpl implements ProdutoService{
         // TODO Auto-generated method stub
     }
    
-    @Override
+ /*  Essa lógia está correta porem quando irei editar todos os dados do cadastro somen , as vezes quero alterar só um dado 
+ ai preciso preencher todos novamente , por isso deixei esse metodo em comentário
+  @Override
     public Produto updateProduto(Produto produto) {
         Optional<Produto> produtoExistente = produtoRepository.findByCodigo(produto.getCodigo());
         if (produtoExistente.isPresent()) {
@@ -45,8 +47,7 @@ public class ProdutoServiceImpl implements ProdutoService{
         } else {
           throw new EntityNotFoundException("Produto não encontrado !");
 
-        }
-    }
+        }*/
     
 
     @Override
@@ -54,7 +55,4 @@ public class ProdutoServiceImpl implements ProdutoService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteProdutoBycodigo'");
     }
-
-   
-    
-}
+} 

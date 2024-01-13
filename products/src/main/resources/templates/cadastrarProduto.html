@@ -46,9 +46,16 @@
                     <p></p>
                     <div th:unless="${produto}">
                         <button id="botao-cadastro" type="submit" class="btn btn-primary">Cadastrar</button>
+                        
+    <div class="text-center mt-4">
+        <a class="btn btn-secondary" href="/paginaInicial">Voltar</a>
+    </div>
                     </div>
 
                     <div th:if="${produto}">
+                        <div class="text-center mt-4">
+                            <a class="btn btn-secondary" href="/listaProdutos">Voltar</a>
+                        </div>
                         <button id="botao-cadastro" type="submit" class="btn btn-primary">Alterar</button>
                     </div>
 
@@ -57,6 +64,7 @@
             </div>
         </div>
     </div>
+
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
