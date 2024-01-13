@@ -2,6 +2,11 @@ package br.com.nunes.sports.products.Controller;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,16 +23,20 @@ import jakarta.transaction.Transactional;
 //@RequestMapping("/produtos")
 public class ProductController {
     
-    @Autowired
-    private final ProdutoService produtoService;
 
     @Autowired
     private  ProdutoRepository produtoRepository;
 
+    @Autowired
+    private final ProdutoService produtoService;
+
+    List<Produto> produtos = new ArrayList<>();
+   
     public ProductController(ProdutoService produtoService) {
         this.produtoService = produtoService;
     }
 
+    
     @GetMapping("/cadastrarProduto")
     public String cadastro(){
         return "cadastrarProduto";
@@ -35,33 +44,32 @@ public class ProductController {
 
     @PostMapping("/salvarProduto")
     public String salvarProduto(Produto produto) {
-        this.produtoService.salvarProduto(produto);
+        this.produtoService.saveProduto(produto);
         return "redirect:/listaProdutos";
     }
 
     @GetMapping("/listaProdutos")
     public ModelAndView  listarProdutos(Produto produto) {
         ModelAndView mv = new ModelAndView("listaProdutos");
-        Iterable<Produto> produtos = this.produtoService.obterTodosOsProdutos();
+        Iterable<Produto> produtos = this.produtoService.getAllProduto();
         mv.addObject("produtos", produtos);
         return mv;
     }
-  
+
+    @GetMapping("/editarProduto/{codigo}")
+    public ModelAndView editarPerfil(@PathVariable("codigo") Long codigo,Produto produto) {
+        ModelAndView mv = new ModelAndView("cadastrarProduto");
+     mv.addObject("produto", produto);
+      this.produtoService.updateProduto(produto);
+        return mv;
+    }
+
+      
     @Transactional
     @GetMapping("/excluirProduto/{codigo}")
     public String excluirProduto(@PathVariable ("codigo")Long codigo) {
         produtoRepository.deleteByCodigo(codigo);
         return "redirect:/listaProdutos";
-    }
-
-
-     @GetMapping("/editarProduto/{codigo}")
-    public ModelAndView editarPerfil(@PathVariable("codigo" )Long codigo){
-   ModelAndView mv = new ModelAndView("cadastrarProduto");
-   Produto produto = this.produtoRepository.findByCodigo(codigo);
-     mv.addObject("produto", produto);
-    return mv;
-       
     }
 
 }

@@ -1,33 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Produto</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="img/pilha-de-livros.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>CADASTRO</title>
 </head>
+
 <body>
 
-    <h2>Cadastro de Produto</h2>
+   
+    <div class="container">
+        <div id="box-cadastro">
+            <div id="cadastro-usuario">
+                <form method="post" action="/salvarProduto">
+                    <div th:if="${produto}">
+                        <input type="hidden" name="codigo" th:value="${produto?.codigo}">
+                    </div>
+                    <h1 style="font-weight: 800;">Cadastro de Usuário</h1>
 
-    <form method="post" action="/salvarProduto">
-        <label for="nome">Nome: </label>
-        <input type="text" id="nome" name="nome"  th:value="${produto?.nome}" required/><br/>
+                    <label for="nome">Nome:</label>
+                    <input class="input-dados" type="text" placeholder="Digite Nome" name="nome"
+                        th:value="${produto?.nome}" required>
+                    <p></p>
 
-        <label for="descricao">Descrição: </label>
-        <input type="text" id="descricao" name="descricao" th:value="${produto?.descricao}"  required/><br/>
+                    <label for="nome">descrição:</label>
+                    <input class="input-dados" type="text" placeholder="Digite a descricao" name="descricao"
+                        th:value="${produto?.descricao}" required>
+                    <p></p>
 
-        <label for="preco">Preço: </label>
-        <input type="number" id="preco" name="preco" step="0.01"  th:value="${produto?.preco}" required/><br/>
+                    <label for="number">preco:</label>
+                    <input class="input-dados" type="number" placeholder="qual o preco" name="preco"
+                        th:value="${produto?.preco}" required>
 
-        <div th:unless="${produto}">
-            <button id="botao-cadastro" type="submit" class="btn btn-primary">Cadastrar</button>
+                    <p></p>
+                    <div th:unless="${produto}">
+                        <button id="botao-cadastro" type="submit" class="btn btn-primary">Cadastrar</button>
+                    </div>
+
+                    <div th:if="${produto}">
+                        <button id="botao-cadastro" type="submit" class="btn btn-primary">Alterar</button>
+                    </div>
+
+                    <p></p>
+                </form>
+            </div>
         </div>
+    </div>
 
-        
-        <div th:if="${produto}">
-            <button id="botao-cadastro" type="submit" class="btn btn-primary">Alterar</button>
-        </div>
-
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>
