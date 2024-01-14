@@ -18,60 +18,64 @@
 </head>
 
 <body>
-
-   
     <div class="container">
-        <div id="box-cadastro">
-            <div id="cadastro-usuario">
+        <div id="box-cadastro" class="d-flex justify-content-center align-items-center vh-100">
+            <div id="cadastro-usuario" class="p-5 bg-light rounded">
                 <form method="post" action="/salvarProduto">
                     <div th:if="${produto}">
                         <input type="hidden" name="codigo" th:value="${produto?.codigo}">
                     </div>
-                    <h1 style="font-weight: 800;">Cadastro de Usuário</h1>
 
-                    <label for="nome">Nome:</label>
-                    <input class="input-dados" type="text" placeholder="Digite Nome" name="nome"
-                        th:value="${produto?.nome}" required>
-                    <p></p>
-
-                    <label for="nome">descrição:</label>
-                    <input class="input-dados" type="text" placeholder="Digite a descricao" name="descricao"
-                        th:value="${produto?.descricao}" required>
-                    <p></p>
-
-                    <label for="number">preco:</label>
-                    <input class="input-dados" type="number" placeholder="qual o preco" name="preco"
-                        th:value="${produto?.preco}" required>
-
-                    <p></p>
                     <div th:unless="${produto}">
-                        <button id="botao-cadastro" type="submit" class="btn btn-primary">Cadastrar</button>
-                        
-    <div class="text-center mt-4">
-        <a class="btn btn-secondary" href="/paginaInicial">Voltar</a>
-    </div>
+                        <h1 style="font-weight: 800;">Cadastro de Produto</h1>
+
                     </div>
 
-                    <div th:if="${produto}">
-                        <div class="text-center mt-4">
-                            <a class="btn btn-secondary" href="/listaProdutos">Voltar</a>
+
+                    <div th:if="${produto}" class="mt-4">
+                        <h1 style="font-weight: 800;">Alterar Produto</h1>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input class="form-control" type="text" placeholder="Digite Nome" name="nome"
+                            th:value="${produto?.nome}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <input class="form-control" type="text" placeholder="Digite a descricao" name="descricao"
+                            th:value="${produto?.descricao}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preco">Preço:</label>
+                        <input class="form-control" type="number" placeholder="Qual o preco" name="preco"
+                            th:value="${produto?.preco}" required>
+                    </div>
+
+                    <div class="text-center">
+                        <div th:unless="${produto}">
+                            <button id="botao-cadastro" type="submit" class="btn btn-primary">Cadastrar</button>
+                            <a class="btn btn-secondary" href="/paginaInicial">Voltar</a>
                         </div>
-                        <button id="botao-cadastro" type="submit" class="btn btn-primary">Alterar</button>
-                    </div>
 
-                    <p></p>
+                        <div th:if="${produto}" class="mt-4">
+                            <a class="btn btn-secondary" href="/listaProdutos">Voltar</a>
+                            <button id="botao-cadastro" type="submit" class="btn btn-primary">Alterar</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>

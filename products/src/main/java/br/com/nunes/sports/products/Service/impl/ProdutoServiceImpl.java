@@ -1,15 +1,12 @@
 package br.com.nunes.sports.products.Service.impl;
 
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.nunes.sports.products.Entity.Produto;
 import br.com.nunes.sports.products.Repository.ProdutoRepository;
 import br.com.nunes.sports.products.Service.ProdutoService;
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService{
@@ -35,10 +32,13 @@ public class ProdutoServiceImpl implements ProdutoService{
         return this.getProdutoByCodigo(codigo);
         // TODO Auto-generated method stub
     }
+
+//-----------------------------------------------------------------------------------------------------------------------------
    
- /*  Essa lógia está correta porem quando irei editar todos os dados do cadastro somen , as vezes quero alterar só um dado 
- ai preciso preencher todos novamente , por isso deixei esse metodo em comentário
-  @Override
+ /* Essa lógica está correta, porém ao editar todos os dados do cadastro,
+  às vezes quero alterar apenas um dado. Nesses casos, é necessário preencher todos os campos novamente.
+   Por isso, deixei esse método em comentário." */
+ /*  @Override
     public Produto updateProduto(Produto produto) {
         Optional<Produto> produtoExistente = produtoRepository.findByCodigo(produto.getCodigo());
         if (produtoExistente.isPresent()) {
@@ -48,7 +48,8 @@ public class ProdutoServiceImpl implements ProdutoService{
           throw new EntityNotFoundException("Produto não encontrado !");
 
         }*/
-    
+//-----------------------------------------------------------------------------------------------------------------------------
+
 
     @Override
     public void deleteProdutoBycodigo(Long codigo) {

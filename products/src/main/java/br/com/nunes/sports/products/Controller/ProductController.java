@@ -56,8 +56,8 @@ public class ProductController {
         return mv;
     }
 
-    /*Irei deixar essa lógica , pois quando vou editar , os dados que eu cadastrei 
-    ficará assim consigo alterar só um campo ao invês de empreencher tudo novamente */
+    /*Vou manter essa lógica, pois ao editar, será possível modificar apenas um campo 
+    em vez de preencher todos os dados novamente.*/
     @GetMapping("/editarProduto/{codigo}")
     public ModelAndView editarPerfil(@PathVariable("codigo") Long codigo) {
         ModelAndView mv = new ModelAndView("cadastrarProduto");
@@ -73,16 +73,7 @@ public class ProductController {
     
         return mv;
     }
-    
 
-
-/* 	@PostMapping("/editarProduto/{codigo}")
-	public String updateStudent(@PathVariable("codigo") @ModelAttribute  Produto produto) {
-        produto.setCodigo(produto.getCodigo()); 
-		// salva o Produto existente
-		produtoService.updateProduto(produto);
-		return "redirect:/listaProdutos";		
-	}*/
 
       
     @Transactional
