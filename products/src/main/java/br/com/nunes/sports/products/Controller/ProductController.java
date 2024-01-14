@@ -8,10 +8,14 @@ import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.HttpClientErrorException.NotFound;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.nunes.sports.products.Entity.Produto;
@@ -58,21 +62,26 @@ public class ProductController {
 
     /*Vou manter essa lógica, pois ao editar, será possível modificar apenas um campo 
     em vez de preencher todos os dados novamente.*/
-    @GetMapping("/editarProduto/{codigo}")
-    public ModelAndView editarPerfil(@PathVariable("codigo") Long codigo) {
-        ModelAndView mv = new ModelAndView("cadastrarProduto");
-       Optional<Produto> optionalProduto = produtoRepository.findByCodigo(codigo);
-    
+  @GetMapping("/editarProduto/{codigo}")
+public ModelAndView editarProduto(@PathVariable("codigo") Long codigo) {
+    ModelAndView mv = new ModelAndView("cadastrarProduto");
+
+    try {
+        Optional<Produto> optionalProduto = produtoRepository.findByCodigo(codigo);
+
         if (optionalProduto.isPresent()) {
             Produto produto = optionalProduto.get();
             mv.addObject("produto", produto);
         } else {
-           
-            return new ModelAndView("redirect:/listaProdutos");
+            // Lança uma exceção indicando que o produto não foi encontrado
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado");
         }
-    
-        return mv;
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+
+    return mv;
+}
 
 
       
