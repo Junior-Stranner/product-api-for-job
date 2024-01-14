@@ -30,3 +30,7 @@ REMOVE PRODUCT:
 
 ![Captura de tela 2024-01-14 085508](https://github.com/Junior-Stranner/product-api-for-job/assets/116032249/91c0c659-41e5-4e8a-8bc1-086decefb38e)
 
+
+
+CRUD is complete and was easy to create ( had some problems with thymeleaf beacouse I´ll was little bit rusty hehe) 
+
